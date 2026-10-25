@@ -4,7 +4,7 @@
 
 ![Gale, desktop](docs/screenshots/desktop-light.png)
 
-**Live app:** _`https://<your-deployment>.vercel.app`_ (placeholder: add the link after deploying)
+**Live app:** [https://swsqc.vercel.app/?date=2026-01-15&gate=09%3A20](https://swsqc.vercel.app/?date=2026-01-15&gate=09%3A20) · **API docs:** [https://swsqc.vercel.app/api/docs](https://swsqc.vercel.app/api/docs)
 
 | | |
 |---|---|
