@@ -1,0 +1,87 @@
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--glass);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  backdrop-filter: saturate(180%) blur(20px);
+  box-shadow: 0 1px 0 var(--hairline);
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  min-height: 3.5rem;
+  padding-block: 0.4rem;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.1875rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+.brand:hover {
+  text-decoration: none;
+}
+
+.links {
+  display: flex;
+  gap: 1.75rem;
+  margin: 0 auto 0 1rem;
+  padding: 0;
+  list-style: none;
+  font-size: 0.8125rem;
+}
+
+.links a {
+  color: var(--ink-2);
+  transition: color 160ms var(--ease);
+}
+
+.links a:hover {
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.gate {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-left: auto;
+}
+
+.compact {
+  display: none;
+}
+
+@media (max-width: 64rem) {
+  .links {
+    display: none;
+  }
+}
+
+@media (max-width: 40rem) {
+  .inner {
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .brand {
+    min-height: 2.6rem;
+  }
+
+  .gateLabel,
+  .full {
+    display: none;
+  }
+
+  .compact {
+    display: block;
+  }
+}

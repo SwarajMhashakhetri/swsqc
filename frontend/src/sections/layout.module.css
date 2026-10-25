@@ -1,0 +1,115 @@
+.section {
+  padding-block: var(--section-gap) 0;
+}
+
+.card {
+  padding: clamp(1.25rem, 0.75rem + 2vw, 2.5rem);
+  border-radius: var(--radius-card);
+  background: var(--card);
+  box-shadow: 0 0 0 1px var(--hairline);
+}
+
+.cardTitle {
+  margin-bottom: 0.375rem;
+  font-size: var(--text-title);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+}
+
+.cardLead {
+  max-width: 36rem;
+  margin-bottom: 1.75rem;
+  color: var(--ink-2);
+  font-size: var(--text-body);
+}
+
+.stack {
+  display: grid;
+  gap: clamp(1rem, 0.75rem + 1vw, 1.5rem);
+}
+
+.split {
+  display: grid;
+  gap: clamp(1rem, 0.75rem + 1vw, 1.5rem);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 30rem), 1fr));
+}
+
+/* Grid items default to min-width: auto, which lets wide tables push the page sideways. */
+.stack > *,
+.split > * {
+  min-width: 0;
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.toggles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+}
+
+.provenance {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.375rem 1.25rem;
+  padding-bottom: 1.25rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid var(--hairline);
+}
+
+.provenance strong {
+  color: var(--ink);
+  font-weight: 500;
+  text-transform: none;
+}
+
+.kpis {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr));
+  gap: 2rem clamp(1.5rem, 1rem + 2vw, 3rem);
+  margin: 2rem 0 0;
+  padding-top: 2rem;
+  border-top: 1px solid var(--hairline);
+}
+
+.tiles {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  margin: 0;
+  overflow: hidden;
+  border-radius: var(--radius-card);
+  background: var(--hairline-solid);
+  box-shadow: 0 0 0 1px var(--hairline);
+}
+
+.tile {
+  padding: clamp(1.5rem, 1rem + 1.5vw, 2.25rem);
+  background: var(--card);
+}
+
+@media (max-width: 56rem) {
+  .tiles {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 30rem) {
+  .tiles {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.inlineFigure {
+  font-weight: 600;
+  color: var(--ink);
+  white-space: nowrap;
+}

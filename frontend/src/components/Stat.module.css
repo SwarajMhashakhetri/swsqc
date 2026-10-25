@@ -1,0 +1,43 @@
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  min-width: 0;
+}
+
+.figure {
+  display: flex;
+  align-items: baseline;
+  gap: 0.3em;
+  font-size: clamp(2rem, 1.6rem + 1.6vw, 2.75rem);
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+}
+
+.stat[data-size='large'] .figure {
+  font-size: var(--text-figure);
+}
+
+.figure[data-tone='signal'] .value {
+  color: var(--signal);
+}
+
+.figure[data-tone='accent'] .value {
+  color: var(--accent);
+}
+
+.unit {
+  font-size: 0.5em;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--ink-3);
+}
+
+.note {
+  font-size: var(--text-small);
+  line-height: 1.43;
+  color: var(--ink-2);
+  letter-spacing: -0.016em;
+}

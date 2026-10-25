@@ -1,0 +1,77 @@
+.stepper {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 3px;
+  border-radius: var(--radius-control);
+  background: var(--card-inset);
+}
+
+.arrow {
+  display: grid;
+  place-items: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--ink);
+  transition: background 160ms var(--ease);
+}
+
+.arrow:hover:not(:disabled) {
+  background: var(--card);
+}
+
+.arrow:disabled {
+  color: var(--ink-3);
+  opacity: 0.45;
+  cursor: default;
+}
+
+.date {
+  position: relative;
+  min-width: 12.5rem;
+  padding: 0.4rem 0.75rem;
+  border-radius: var(--radius-control);
+  text-align: center;
+  font-size: var(--text-small);
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.date:hover {
+  background: var(--card);
+}
+
+.date:focus-within {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+/* The native input sits on top, invisible, so taps open the platform date picker. */
+.native {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.short {
+  display: none;
+}
+
+@media (max-width: 30rem) {
+  .date {
+    min-width: 7.5rem;
+  }
+
+  .long {
+    display: none;
+  }
+
+  .short {
+    display: inline;
+  }
+}

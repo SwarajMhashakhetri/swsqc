@@ -1,0 +1,486 @@
+.figure {
+  position: relative;
+  min-width: 0;
+  margin: 0;
+}
+
+/* The measured box: its width comes from layout only. `contain: inline-size` stops the SVG it sizes from feeding back into it. */
+.plot {
+  position: relative;
+  width: 100%;
+  min-width: 0;
+  contain: inline-size;
+  touch-action: pan-y;
+}
+
+.plot:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+  border-radius: 12px;
+}
+
+.svg {
+  display: block;
+  overflow: visible;
+  transition: opacity 240ms var(--ease);
+}
+
+.svg[data-stale='true'] {
+  opacity: 0.45;
+}
+
+.grid {
+  stroke: var(--grid);
+  stroke-width: 1;
+  shape-rendering: crispEdges;
+}
+
+.baseline {
+  stroke: var(--axis);
+  stroke-width: 1;
+  shape-rendering: crispEdges;
+}
+
+.tick {
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+  fill: var(--ink-3);
+  letter-spacing: 0;
+}
+
+.unit {
+  font-size: 11px;
+  fill: var(--ink-3);
+  letter-spacing: 0.02em;
+}
+
+.annotation {
+  font-size: 11px;
+  font-weight: 500;
+  fill: var(--ink-2);
+  letter-spacing: 0;
+}
+
+.annotationStrong {
+  font-size: 11px;
+  font-weight: 600;
+  fill: var(--ink);
+  letter-spacing: 0;
+}
+
+.crosshair {
+  stroke: var(--ink-3);
+  stroke-width: 1;
+  shape-rendering: crispEdges;
+}
+
+.band {
+  fill: var(--accent-soft);
+}
+
+.lineForecast {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 2;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+.lineActual {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 2;
+  stroke-dasharray: 5 4;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+.lineVintage {
+  fill: none;
+  stroke: var(--vintage);
+  stroke-width: 1;
+  stroke-linejoin: round;
+}
+
+.lineSignal {
+  fill: none;
+  stroke: var(--signal);
+  stroke-width: 2;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+.dot {
+  stroke: var(--card);
+  stroke-width: 2;
+}
+
+.dotForecast {
+  fill: var(--accent);
+}
+
+.dotActual {
+  fill: var(--ink);
+}
+
+.dotSignal {
+  fill: var(--signal);
+}
+
+.barAccent {
+  fill: var(--accent);
+}
+
+.barSignal {
+  fill: var(--signal);
+}
+
+.barMuted {
+  fill: var(--ink-3);
+  opacity: 0.35;
+}
+
+.bar {
+  transition: opacity 160ms var(--ease);
+}
+
+.dimmed .bar:not([data-active='true']) {
+  opacity: 0.35;
+}
+
+.zone {
+  fill: var(--ink);
+  fill-opacity: 0.045;
+}
+
+.marker {
+  stroke: var(--ink);
+  stroke-width: 1;
+  shape-rendering: crispEdges;
+}
+
+.markerSoft {
+  stroke: var(--ink-3);
+  stroke-width: 1;
+  stroke-opacity: 0.6;
+  shape-rendering: crispEdges;
+}
+
+.threshold {
+  stroke: var(--signal);
+  stroke-width: 2;
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.25rem;
+  margin: 0 0 1rem;
+  padding: 0;
+  list-style: none;
+  font-size: 0.8125rem;
+  color: var(--ink-2);
+}
+
+.legend li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.key {
+  display: inline-block;
+  width: 1.25rem;
+  height: 0;
+  border-top: 2px solid var(--accent);
+}
+
+.key[data-kind='actual'] {
+  border-top: 2px dashed var(--ink);
+}
+
+.key[data-kind='vintage'] {
+  border-top: 1px solid var(--vintage);
+}
+
+.key[data-kind='band'] {
+  height: 0.75rem;
+  border: 0;
+  border-radius: 3px;
+  background: var(--accent-soft);
+}
+
+.key[data-kind='signal'] {
+  border-top-color: var(--signal);
+}
+
+.key[data-kind='bar-accent'],
+.key[data-kind='bar-signal'],
+.key[data-kind='bar-muted'] {
+  width: 0.75rem;
+  height: 0.75rem;
+  border: 0;
+  border-radius: 3px;
+  background: var(--accent);
+}
+
+.key[data-kind='bar-signal'] {
+  background: var(--signal);
+}
+
+.key[data-kind='bar-muted'] {
+  background: var(--ink-3);
+  opacity: 0.35;
+}
+
+.key[data-kind='actual-hairline'] {
+  border-top: 1px solid var(--ink);
+}
+
+.key[data-kind='fill-signal'],
+.key[data-kind='hatch-accent'] {
+  width: 0.75rem;
+  height: 0.75rem;
+  border: 0;
+  border-radius: 3px;
+}
+
+.key[data-kind='fill-signal'] {
+  background: var(--signal-soft);
+}
+
+.key[data-kind='hatch-accent'] {
+  background:
+    repeating-linear-gradient(-45deg, var(--accent) 0 1px, transparent 1px 3px),
+    var(--accent-soft);
+}
+
+.key[data-kind='dot-signal'] {
+  width: 0.625rem;
+  height: 0.625rem;
+  border: 0;
+  border-radius: 50%;
+  background: var(--signal);
+}
+
+.tooltip {
+  position: absolute;
+  top: 0;
+  z-index: 2;
+  min-width: 11rem;
+  padding: 0.75rem 0.875rem;
+  border-radius: 14px;
+  background: var(--glass);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  backdrop-filter: saturate(180%) blur(20px);
+  box-shadow:
+    0 0 0 1px var(--hairline),
+    0 8px 28px rgb(0 0 0 / 12%);
+  font-size: 0.8125rem;
+  line-height: 1.35;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.tooltipTitle {
+  margin-bottom: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.tooltipRows {
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 0.3rem 1rem;
+  margin: 0;
+}
+
+.tooltipRows dt {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--ink-2);
+}
+
+.tooltipRows dd {
+  margin: 0;
+  text-align: right;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+}
+
+.table {
+  margin-top: 1rem;
+  font-size: var(--text-small);
+}
+
+.table summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  color: var(--accent);
+  cursor: pointer;
+  list-style: none;
+}
+
+.table summary::-webkit-details-marker {
+  display: none;
+}
+
+.table summary::after {
+  content: '';
+  width: 0.4rem;
+  height: 0.4rem;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: rotate(45deg) translateY(-2px);
+  transition: transform 200ms var(--ease);
+}
+
+.table[open] summary::after {
+  transform: rotate(225deg) translate(-2px, 0);
+}
+
+.tableScroll {
+  max-height: 20rem;
+  margin-top: 0.75rem;
+  overflow: auto;
+  border-radius: 12px;
+  box-shadow: inset 0 0 0 1px var(--hairline);
+}
+
+.tableScroll table {
+  width: 100%;
+  border-collapse: collapse;
+  font-variant-numeric: tabular-nums;
+}
+
+.tableScroll th,
+.tableScroll td {
+  padding: 0.5rem 0.875rem;
+  border-bottom: 1px solid var(--hairline);
+  text-align: right;
+  white-space: nowrap;
+}
+
+.tableScroll th:first-child,
+.tableScroll td:first-child {
+  text-align: left;
+}
+
+.tableScroll th {
+  position: sticky;
+  top: 0;
+  background: var(--card);
+  font-weight: 500;
+  color: var(--ink-2);
+}
+
+/* ---- Glance ribbon: the hero's month-long product shot ---- */
+
+.glance {
+  display: grid;
+  gap: 1rem;
+}
+
+.glanceHead,
+.glanceFoot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem 1.5rem;
+}
+
+.glanceFoot .legend {
+  margin: 0;
+}
+
+.readout {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1rem;
+  min-height: 1.4em;
+  font-size: var(--text-small);
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-2);
+}
+
+.readout strong,
+.readoutDay {
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.glanceHint {
+  font-size: 0.8125rem;
+  color: var(--ink-3);
+}
+
+.glancePlot {
+  cursor: pointer;
+}
+
+/* Draw-in: the month wipes in left to right once, when the data first arrives. */
+.glanceData {
+  animation: glance-draw 1800ms var(--ease-out) both;
+}
+
+@keyframes glance-draw {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glanceData {
+    animation: none;
+  }
+}
+
+.glanceForecast {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 1.5;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+.glanceActual {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 1;
+  stroke-opacity: 0.85;
+  stroke-linejoin: round;
+}
+
+/* Over- and under-forecast differ by texture as well as hue: a solid tint against a hatch. */
+.fillOver {
+  fill: var(--signal-soft);
+}
+
+.fillUnder {
+  fill: var(--accent-soft);
+}
+
+.hatch {
+  stroke: var(--accent);
+  stroke-width: 1;
+}
+
+.glanceHover {
+  fill: var(--ink);
+  fill-opacity: 0.07;
+}
+
+.glanceSelected {
+  fill: var(--accent);
+}
